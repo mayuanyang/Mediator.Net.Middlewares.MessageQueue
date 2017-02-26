@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AAD26D25-B7DD-4A42-A54B-227B62DBDE90}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{B8064139-C3AD-4A3C-97C8-579994E529D6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mediator.Net.Middlewares.MessageQueue</RootNamespace>
-    <AssemblyName>Mediator.Net.Middlewares.MessageQueue</AssemblyName>
+    <RootNamespace>Mediator.Net.Middlewares.MessageQueue.Console</RootNamespace>
+    <AssemblyName>Mediator.Net.Middlewares.MessageQueue.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ConfigInjector, Version=2.2.1175.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ConfigInjector.2.2.1175.0\lib\net45\ConfigInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GreenPipes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\GreenPipes.1.0.9\lib\net452\GreenPipes.dll</HintPath>
       <Private>True</Private>
@@ -38,24 +49,12 @@
       <HintPath>..\..\packages\MassTransit.3.5.5\lib\net452\MassTransit.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MassTransit.AzureServiceBusTransport, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MassTransit.AzureServiceBus.3.5.5\lib\net452\MassTransit.AzureServiceBusTransport.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MassTransit.RabbitMqTransport, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MassTransit.RabbitMQ.3.5.5\lib\net452\MassTransit.RabbitMqTransport.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Mediator.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Mediator.Net.1.0.65\lib\net45\Mediator.Net.dll</HintPath>
+      <HintPath>..\..\packages\Mediator.Net.1.0.59\lib\net45\Mediator.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WindowsAzure.ServiceBus.3.4.5\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    <Reference Include="Mediator.Net.Autofac, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Mediator.Net.Autofac.1.0.65\lib\net45\Mediator.Net.Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NewId, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
@@ -66,14 +65,8 @@
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RabbitMQ.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RabbitMQ.Client.4.1.1\lib\net451\RabbitMQ.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,15 +75,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBusConfiguration.cs" />
-    <Compile Include="MessageBroker.cs" />
-    <Compile Include="MessageQueueMiddleware.cs" />
-    <Compile Include="MessageQueueSpecification.cs" />
+    <Compile Include="BusConfiguration.cs" />
+    <Compile Include="CommandHandlers\CalculateTotalCommand.cs" />
+    <Compile Include="Commands\CalculateTotalCommand.cs" />
+    <Compile Include="EventHandlers\TotalCalculatedEventHandler.cs" />
+    <Compile Include="Events\TotalCalculatedEvent.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TotalCalculatedEvent.cs" />
+    <Compile Include="Settings\AzureTokenProviderKeyNameSetting.cs" />
+    <Compile Include="Settings\AzureTokenProviderSharedAccessKeySetting.cs" />
+    <Compile Include="Settings\MessageBrokerSetting.cs" />
+    <Compile Include="Settings\MessageBrokerUriSetting.cs" />
+    <Compile Include="Settings\PasswordSetting.cs" />
+    <Compile Include="Settings\UserNameSetting.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mediator.Net.Middlewares.MessageQueue\Mediator.Net.Middlewares.MessageQueue.csproj">
+      <Project>{aad26d25-b7dd-4a42-a54b-227b62dbde90}</Project>
+      <Name>Mediator.Net.Middlewares.MessageQueue</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

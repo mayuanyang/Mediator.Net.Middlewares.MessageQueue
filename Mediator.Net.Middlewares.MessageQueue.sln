@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediator.Net.Middlewares.MessageQueue", "src\Mediator.Net.Middlewares.MessageQueue\Mediator.Net.Middlewares.MessageQueue.csproj", "{AAD26D25-B7DD-4A42-A54B-227B62DBDE90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediator.Net.Middlewares.MessageQueue.Console", "src\Mediator.Net.Middlewares.MessageQueue.Console\Mediator.Net.Middlewares.MessageQueue.Console.csproj", "{B8064139-C3AD-4A3C-97C8-579994E529D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AAD26D25-B7DD-4A42-A54B-227B62DBDE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAD26D25-B7DD-4A42-A54B-227B62DBDE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAD26D25-B7DD-4A42-A54B-227B62DBDE90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8064139-C3AD-4A3C-97C8-579994E529D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8064139-C3AD-4A3C-97C8-579994E529D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8064139-C3AD-4A3C-97C8-579994E529D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8064139-C3AD-4A3C-97C8-579994E529D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using System;
 using MassTransit;
 using MassTransit.AzureServiceBusTransport;
+using Mediator.Net.Contracts;
 using Microsoft.ServiceBus;
 using MNPublishPipeConfigurator = Mediator.Net.Pipeline.IPublishPipeConfigurator;
 
@@ -10,13 +11,19 @@ namespace Mediator.Net.Middlewares.MessageQueue
     {
         private static IBus _busToBeUsed;
 
-        public static void UseMessageQueue(this MNPublishPipeConfigurator configurator,
-            IBusConfiguration busConfiguration, Func<bool> shouldExecute, IBus bus = null)
+        public static void UseMessageQueue<TMessage>(this MNPublishPipeConfigurator configurator,
+            Func<IBusConfiguration> busConfigurationCallback, Func<bool> shouldExecute, IBus bus = null)
+            where TMessage : class, IEvent
         {
+            var busConfiguration = busConfigurationCallback();
             _busToBeUsed = bus;
             if (bus == null)
             {
-                bus = configurator.DependancyScope.Resolve<IBusControl>();
+                if (configurator.DependancyScope != null)
+                {
+                    bus = configurator.DependancyScope.Resolve<IBusControl>();
+                }
+                
                 if (bus == null)
                 {
                     if (_busToBeUsed == null)
@@ -67,7 +74,7 @@ namespace Mediator.Net.Middlewares.MessageQueue
                     }
                 }
             }
-            configurator.AddPipeSpecification(new MessageQueueSpecification(shouldExecute, _busToBeUsed));
+            configurator.AddPipeSpecification(new MessageQueueSpecification<IEvent>(shouldExecute, _busToBeUsed));
         }
     }
 }
