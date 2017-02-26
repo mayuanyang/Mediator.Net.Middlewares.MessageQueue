@@ -6,10 +6,10 @@ namespace Mediator.Net.Middlewares.MessageQueue
 {
     public static class MessageQueueMiddleware
     {
-        private static IBusControl _busToBeUsed;
+        private static IBus _busToBeUsed;
 
         public static void UseMessageQueue(this MNPublishPipeConfigurator configurator,
-            IBusConfiguration busConfiguration, Func<bool> shouldExecute, IBusControl bus = null)
+            IBusConfiguration busConfiguration, Func<bool> shouldExecute, IBus bus = null)
         {
             _busToBeUsed = bus;
             if (bus == null)
@@ -29,7 +29,6 @@ namespace Mediator.Net.Middlewares.MessageQueue
                             });
 
                         });
-                        _busToBeUsed.Start();
                     }
                 }
             }

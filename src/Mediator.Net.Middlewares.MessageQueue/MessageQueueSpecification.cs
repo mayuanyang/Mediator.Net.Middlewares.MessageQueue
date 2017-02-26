@@ -10,9 +10,9 @@ namespace Mediator.Net.Middlewares.MessageQueue
     public class MessageQueueSpecification : IPipeSpecification<IPublishContext<IEvent>>
     {
         private readonly Func<bool> _shouldExecute;
-        private readonly IBusControl _bus;
+        private readonly IBus _bus;
 
-        public MessageQueueSpecification(Func<bool> shouldExecute, IBusControl bus )
+        public MessageQueueSpecification(Func<bool> shouldExecute, IBus bus )
         {
             _shouldExecute = shouldExecute;
             _bus = bus;
