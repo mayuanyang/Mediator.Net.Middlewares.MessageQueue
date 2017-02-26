@@ -1,5 +1,7 @@
 ﻿using System;
 using MassTransit;
+using MassTransit.AzureServiceBusTransport;
+using Microsoft.ServiceBus;
 using MNPublishPipeConfigurator = Mediator.Net.Pipeline.IPublishPipeConfigurator;
 
 namespace Mediator.Net.Middlewares.MessageQueue
@@ -19,16 +21,49 @@ namespace Mediator.Net.Middlewares.MessageQueue
                 {
                     if (_busToBeUsed == null)
                     {
-                        _busToBeUsed = Bus.Factory.CreateUsingRabbitMq(cfg =>
+                        if (string.IsNullOrEmpty(busConfiguration.MessageBrokerUri))
                         {
-                            var uri = busConfiguration.MessageBrokerUri;
-                            cfg.Host(new Uri(uri), x =>
-                            {
-                                x.Username(busConfiguration.UserName);
-                                x.Password(busConfiguration.Password);
-                            });
+                            throw new MissingFieldException("MessageBrokerUri is missing");
+                        }
 
-                        });
+                        if (busConfiguration.MessageBroker == MessageBroker.RabbitMQ)
+                        {
+                            _busToBeUsed = Bus.Factory.CreateUsingRabbitMq(cfg =>
+                            {
+                                cfg.Host(new Uri(busConfiguration.MessageBrokerUri), x =>
+                                {
+                                    x.Username(busConfiguration.UserName);
+                                    x.Password(busConfiguration.Password);
+                                });
+
+                            });
+                        }
+                        else if (busConfiguration.MessageBroker == MessageBroker.AzureServiceBus)
+                        {
+                            if (string.IsNullOrEmpty(busConfiguration.AzureTokenProviderKeyName))
+                            {
+                                throw new MissingFieldException("AzureTokenProviderKeyName is missing");
+                            }
+
+                            if (string.IsNullOrEmpty(busConfiguration.AzureTokenProviderSharedAccessKey))
+                            {
+                                throw new MissingFieldException("AzureTokenProviderSharedAccessKey is missing");
+                            }
+
+                            _busToBeUsed = Bus.Factory.CreateUsingAzureServiceBus(cfg =>
+                            {
+                                var host = cfg.Host(new Uri(busConfiguration.MessageBrokerUri), h =>
+                                {
+                                    h.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(busConfiguration.AzureTokenProviderKeyName,
+                                        busConfiguration.AzureTokenProviderSharedAccessKey);
+                                });
+                            });
+                        }
+                        else
+                        {
+                            throw new NotSupportedException("Not supported MessageBroker");
+                        }
+                        
                     }
                 }
             }
