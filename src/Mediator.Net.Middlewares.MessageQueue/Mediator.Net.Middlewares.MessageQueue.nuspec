@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Mediator.Net.Middlewares.MessageQueue</id>
+    <title>MessageQueue middleware for Mediator.Net</title>
+    <version>0.9.1</version>
+    <authors>Yuan(Eddy) Ma</authors>
+    <owners>Yuan(Eddy) Ma</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/mayuanyang/Mediator.Net.Middlewares.MessageQueue</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A Mediator.Net's middleware that to broadcast the message to a message broker, by adding this one into the publish pipe, any event is raised from your domain logic will  be picked up and broadcast to your configured message broker.</description>
+    <tags>.NET Mediator Cqrs DDD Command Event Request Response RabbitMQ AzureServiceBus</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5" />
+    </dependencies>
+  </metadata>
+</package>
