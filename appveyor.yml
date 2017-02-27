@@ -1,0 +1,12 @@
+version: 0.9.{build}
+configuration: Release
+before_build:
+- cmd: nuget restore Mediator.Net.Middlewares.MessageQueue.sln
+build:
+  project: Mediator.Net.Middlewares.MessageQueue.sln
+  verbosity: minimal
+after_build:
+- cmd: nuget pack src/Mediator.Net.Middlewares.MessageQueue/Mediator.Net.Middlewares.MessageQueue.csproj -Version %APPVEYOR_BUILD_VERSION%
+test: off
+artifacts:
+- path: '**\Mediator.Net.Middlewares.MessageQueue*.nupkg'

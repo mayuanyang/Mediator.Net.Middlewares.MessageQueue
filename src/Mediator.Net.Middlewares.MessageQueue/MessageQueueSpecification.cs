@@ -31,10 +31,7 @@ namespace Mediator.Net.Middlewares.MessageQueue
 
         public async Task ExecuteAfterConnect(IPublishContext<TMessage> context)
         {
-            // As context.Message is generic type, masstransit will not look into its concrete type
-            // There is a bug in IpipeSpecification that with the generic type of IMessage rather  than TMessage
-            // For the time being we will use Publish(object message) to get the concrete type  
-            await _bus.Publish((object)context.Message);
+            await _bus.Publish(context.Message, context.Message.GetType());
         }
 
         public void OnException(Exception ex, IPublishContext<TMessage> context)
