@@ -11,9 +11,8 @@ namespace Mediator.Net.Middlewares.MessageQueue
     {
         private static IBus _busToBeUsed;
 
-        public static void UseMessageQueue<TMessage>(this MNPublishPipeConfigurator configurator,
+        public static void UseMessageQueue(this MNPublishPipeConfigurator configurator,
             Func<IBusConfiguration> busConfigurationCallback, Func<bool> shouldExecute, IBus bus = null)
-            where TMessage : class, IEvent
         {
             var busConfiguration = busConfigurationCallback();
             _busToBeUsed = bus;

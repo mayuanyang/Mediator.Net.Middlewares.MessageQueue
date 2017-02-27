@@ -32,7 +32,7 @@ namespace Mediator.Net.Middlewares.MessageQueue.Console
                 return mediatorBuilder.RegisterHandlers(typeof(Program).Assembly)
                     .ConfigurePublishPipe(x =>
                     {
-                        x.UseMessageQueue<TotalCalculatedEvent>(() => busConfig,
+                        x.UseMessageQueue(() => busConfig,
                         () => true);
                     }).Build();
             }).AsImplementedInterfaces();
